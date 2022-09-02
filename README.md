@@ -5,6 +5,13 @@ Implementation of Text-To-Image generation using Stable Diffusion on Intel CPU.
   <img src="data/title.png"/>
 </p>
 
+
+```s
+> docker run --rm -it -p 8501:8501 -e INFERENCE_NUM_THREADS=8 scaamanho/stablediffusion-openvino
+```
+
+
+
 ## Requirements
 
 * Linux, Windows, MacOS

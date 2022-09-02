@@ -1,0 +1,2 @@
+* [x] Parametrizar CPU
+* [ ] 

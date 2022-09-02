@@ -9,7 +9,8 @@ from tqdm import tqdm
 from huggingface_hub import hf_hub_download
 from diffusers import LMSDiscreteScheduler, PNDMScheduler
 import cv2
-
+import os
+from os import environ
 
 def result(var):
     return next(iter(var.values()))
@@ -27,6 +28,9 @@ class StableDiffusionEngine:
         self.scheduler = scheduler
         # models
         self.core = Core()
+        # increase the number of cpus used
+        if "INFERENCE_NUM_THREADS" in os.environ and environ.get('INFERENCE_NUM_THREADS') != "0":
+            self.core.set_property("CPU", {"INFERENCE_NUM_THREADS": 8})
         # text features
         self._text_encoder = self.core.read_model(
             hf_hub_download(repo_id=model, filename="text_encoder.xml"),
